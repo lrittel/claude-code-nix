@@ -27,7 +27,7 @@
 }:
 
 let
-  version = "2.1.97";
+  version = "2.1.191";
 
   # Platform mapping for native binaries (Nix system -> Anthropic platform)
   platformMap = {
@@ -41,10 +41,10 @@ let
 
   # Native binary hashes per platform
   nativeHashes = {
-    "darwin-arm64" = "1syg85g4imj89j76cbfgsx059p7j046ywpmwp855jb581jkfn14i";
-    "darwin-x64" = "1350vm318hpfmlad6raxr0dn5fdahs80646p5hid075zklrfxrnn";
-    "linux-x64" = "1xkyg7amz4c0l7rr3k03swfc4586gxw1yfpgxrina8193p8zqhqd";
-    "linux-arm64" = "1835qcj7fapykbj9nw7xqafwhwx2xhl2l082n28dspv546vpq5l5";
+    "darwin-arm64" = "0064cvp1gq2qsmkvzh7yrq4mn454s0jc01nxmr4ycq2j59azpzcr";
+    "darwin-x64" = "195j9jbr8r5s5wyn1z5yqbm0b497s83dm72kfkymkm2gzkasm0vf";
+    "linux-x64" = "1vjvdmwchq541p2rlclp0jq2b0q87glq7qy33na806yzifldnf0h";
+    "linux-arm64" = "16wlv3z3yrnggxnvfw7gc0zfkdizb2hs1j5zfg0gi16prz5sfc8s";
   };
 
   # Native binary URL
@@ -61,8 +61,8 @@ let
   # Seccomp companion files for the native runtime sandbox
   sandboxRuntime = if runtime == "native" then
     fetchurl {
-      url = "https://registry.npmjs.org/@anthropic-ai/sandbox-runtime/-/sandbox-runtime-0.0.49.tgz";
-      sha256 = "0ajdkyhi5yj3934g1zj075a8kdk7vrqywkxm90p7nyw21ysq7c0m";
+      url = "https://registry.npmjs.org/@anthropic-ai/sandbox-runtime/-/sandbox-runtime-0.0.60.tgz";
+      sha256 = "1qp0q2zl06a1v0zv8mm1scfwkma9dkl5aim1s8jyh479cp02fg7a";
     }
   else null;
 
@@ -70,7 +70,7 @@ let
   claudeCodeTarball = if runtime != "native" then
     fetchurl {
       url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
-      sha256 = "12ls9cay68zzadj8wjvldc83k30ks1sgj1rlnyy2a2fx7s48xpsr";
+      sha256 = "0ah66mjj7300rbdhz6zdg410qlwxvg4jxm5h9mvg27jgbb7a41jg";
     }
   else null;
 
