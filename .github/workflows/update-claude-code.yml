@@ -120,7 +120,7 @@ jobs:
             automated
       
       - name: Enable Auto-Merge
-        if: steps.check.outputs.update_needed == 'true' && steps.create-pr.outputs.pull-request-created == 'true'
+        if: steps.check.outputs.update_needed == 'true' && steps.create-pr.outputs.pull-request-operation == 'created'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
