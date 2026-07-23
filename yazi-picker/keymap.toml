@@ -1,0 +1,19 @@
+[[mgr.prepend_keymap]]
+on = "<Enter>"
+run = "plugin picker enter"
+desc = "Pick the hovered entry (mode-dependent)"
+
+[[mgr.prepend_keymap]]
+on = "<Space>"
+run = "plugin picker toggle"
+desc = "Toggle the current selection (files mode only)"
+
+[[mgr.prepend_keymap]]
+on = "<C-a>"
+run = "plugin picker toggle_all on"
+desc = "Select all files (files mode only)"
+
+[[mgr.prepend_keymap]]
+on = "<C-r>"
+run = "plugin picker toggle_all"
+desc = "Invert selection of all files (files mode only)"

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Launches yazi as a multi-file picker: space toggles selection, enter with
+# nothing selected picks the hovered file (or enters a hovered directory),
+# enter with an active selection returns the whole selection. Prints one
+# picked path per line to stdout.
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+config_dir="$(cd -- "$script_dir/.." >/dev/null 2>&1 && pwd)"
+
+chooser_file="$(mktemp)"
+trap 'rm -f "$chooser_file"' EXIT
+
+YAZI_CONFIG_HOME="$config_dir" YAZI_PICKER_MODE=files \
+	yazi --chooser-file="$chooser_file" "$@"
+
+[[ -s "$chooser_file" ]] && cat "$chooser_file"

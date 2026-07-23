@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Launches yazi as a directory picker: enter on a directory picks it, enter
+# on a file (or in an empty directory) picks the current directory instead.
+# Prints the picked directory path to stdout.
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+config_dir="$(cd -- "$script_dir/.." >/dev/null 2>&1 && pwd)"
+
+chooser_file="$(mktemp)"
+trap 'rm -f "$chooser_file"' EXIT
+
+YAZI_CONFIG_HOME="$config_dir" YAZI_PICKER_MODE=dir \
+	yazi --chooser-file="$chooser_file" "$@"
+
+[[ -s "$chooser_file" ]] && cat "$chooser_file"
